@@ -1,6 +1,6 @@
 # Exp 7 Stock Market Prediction using Linear Regression and Real-Time Sentiment Analysis of Tweets
 
-**Date:**
+**Date:** 04/08/2026
 
 ## AIM:
 
@@ -58,11 +58,87 @@ Execute the program and analyze the stock price prediction and sentiment analysi
 
 ## PROGRAM:
 
-*(Paste the Python code for Stock Market Prediction using Linear Regression and Real-Time Sentiment Analysis of Tweets here.)*
+**a) Stock Market Prediction using Linear Regression : To predict future stock prices using machine learning regression techniques.**
+```
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+data = pd.read_csv("stock_data_big.csv")
+
+print(data.head())
+
+X = data[["Open", "High", "Low", "Volume"]]
+y = data["Close"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+
+print("\nMean Squared Error:", mean_squared_error(y_test, predictions))
+print("R2 Score:", r2_score(y_test, predictions))
+
+plt.figure(figsize=(8,5))
+plt.plot(y_test.values[:50], label='Actual Prices', color='blue')
+plt.plot(predictions[:50], label='Predicted Prices', color='red')
+plt.title("Stock Price Prediction (Actual vs Predicted)")
+plt.xlabel("Time")
+plt.ylabel("Stock Close Price")
+plt.legend()
+plt.show()
+```
+
+**b) Real-Time Sentiment Analysis of Tweets: Perform real-time sentiment analysis on user-provided text data (tweets or reviews).**
+
+```
+
+import pandas as pd
+from textblob import TextBlob
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("tweets_big.csv")
+
+def get_sentiment(text):
+    analysis = TextBlob(str(text))
+    if analysis.sentiment.polarity > 0:
+        return "Positive"
+    elif analysis.sentiment.polarity < 0:
+        return "Negative"
+    else:
+        return "Neutral"
+
+
+data["Sentiment"] = data["text"].apply(get_sentiment)
+
+sentiment_counts = data["Sentiment"].value_counts()
+print(sentiment_counts)
+
+plt.figure(figsize=(6,4))
+sentiment_counts.plot(kind='bar', color=['green','red','gray'])
+plt.title("Sentiment Analysis Results")
+plt.xlabel("Sentiment Type")
+plt.ylabel("Number of Tweets/Reviews")
+plt.show()
+
+print("\nSample Results:")
+print(data[["text", "Sentiment"]].head())
+```
+
 
 ## OUTPUT:
 
-*(Paste the execution output showing the predicted stock prices, evaluation metrics, actual versus predicted stock price graph, and sentiment analysis results.)*
+**a) Stock Market Prediction using Linear Regression : To predict future stock prices using machine learning regression techniques.**
+<img width="878" height="657" alt="image" src="https://github.com/user-attachments/assets/af295af6-4d49-4943-85d8-6cbbb96acf15" />
+
+**b) Real-Time Sentiment Analysis of Tweets: Perform real-time sentiment analysis on user-provided text data (tweets or reviews).**
+<img width="737" height="652" alt="image" src="https://github.com/user-attachments/assets/e3f524ba-4914-44f4-8515-7de366410c79" />
+
 
 ## RESULT:
 
