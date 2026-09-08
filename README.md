@@ -113,7 +113,6 @@ def get_sentiment(text):
     else:
         return "Neutral"
 
-
 data["Sentiment"] = data["text"].apply(get_sentiment)
 
 sentiment_counts = data["Sentiment"].value_counts()
@@ -134,13 +133,8 @@ print(data[["text", "Sentiment"]].head())
 a) Stock Market Prediction using Linear Regression : To predict future stock prices using machine learning regression techniques.**
 <img width="878" height="657" alt="image" src="https://github.com/user-attachments/assets/af295af6-4d49-4943-85d8-6cbbb96acf15" />
 
-
-
-
-
 b) Real-Time Sentiment Analysis of Tweets: Perform real-time sentiment analysis on user-provided text data (tweets or reviews).**
 <img width="737" height="652" alt="image" src="https://github.com/user-attachments/assets/e3f524ba-4914-44f4-8515-7de366410c79" />
 
 ### RESULT:
-
 The **Stock Market Prediction using Linear Regression** and **Real-Time Sentiment Analysis of Tweets** were implemented successfully. The Linear Regression model was used to predict stock prices using historical stock market data, while the sentiment analysis system successfully analyzed user-provided tweets or reviews and classified them as **Positive, Negative, or Neutral**.
